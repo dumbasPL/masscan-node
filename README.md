@@ -8,7 +8,7 @@ only supported on linux. requires masscan to already be installed.
 please make an [issue](https://github.com/dumbasPL/masscan-node/issues/new) if you need support for other platforms.
 
 ```bash
-yard add masscan
+yarn add masscan
 # or
 npm install masscan
 ```
