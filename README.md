@@ -8,15 +8,15 @@ only supported on linux. requires masscan to already be installed.
 please make an [issue](https://github.com/dumbasPL/masscan-node/issues/new) if you need support for other platforms.
 
 ```bash
-yard add masscan-node
+yard add masscan
 # or
-npm install masscan-node
+npm install masscan
 ```
 
 ## Usage
 
 ```js
-const {Masscan} = require('masscan-node');
+const {Masscan} = require('masscan');
 
 // scan the whole internet for open ports 80 and 443 at 10k packets per second
 // see original masscan docs for more info on the available options
