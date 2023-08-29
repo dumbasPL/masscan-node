@@ -1,0 +1,32 @@
+name: Publish a package to the NPM registry
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          registry-url: https://npm.pkg.github.com
+        
+      - name: Install dependencies
+        run: yarn install
+      
+      - name: build
+        run: yarn build
+      
+      - name: Make sure nothing chnaged after build
+        run: test -z "$(git status --porcelain)"
+
+      - name: Publish package to NPM
+        run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
