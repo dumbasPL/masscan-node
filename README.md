@@ -2,6 +2,8 @@
 
 Node.js wrapper for [masscan](https://github.com/robertdavidgraham/masscan).
 
+[![NPM Version](https://badgen.net/npm/v/masscan)](https://www.npmjs.com/package/masscan)
+
 ## Installation
 
 only supported on linux. requires masscan to already be installed.  
