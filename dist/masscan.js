@@ -78,13 +78,14 @@ class Masscan extends tiny_typed_emitter_1.TypedEmitter {
             });
             (_b = this.scanner.stderr) === null || _b === void 0 ? void 0 : _b.on('data', (chunkData) => {
                 // this is fine because stderr is flushed after every line
-                const chunks = chunkData.toString().split(/\r?\n/); // split just in case
+                const chunks = chunkData.toString()
+                    .split(/\r?\n/).map(c => c.trim()); // split just in case
                 for (const chunk of chunks) {
                     const stats = this.parseStats(chunk);
                     if (stats) {
                         this.emit('stats', stats);
                     }
-                    else if (chunk && !MASSCAN_BANNER_REGEX.test(chunk)) {
+                    else if (chunk && !MASSCAN_BANNER_REGEX.test(chunk) && chunk.length > 0) {
                         this.emit('error', new Error(chunk));
                     }
                 }
