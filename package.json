@@ -1,8 +1,7 @@
 {
   "name": "masscan",
   "description": "Node.js wrapper for masscan",
-  "version": "0.1.2",
-  "private": false,
+  "version": "0.1.3",
   "repository": "https://github.com/dumbasPL/masscan-node",
   "bugs": "https://github.com/dumbasPL/masscan-node/issues",
   "homepage": "https://github.com/dumbasPL/masscan-node",

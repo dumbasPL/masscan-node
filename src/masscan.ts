@@ -183,12 +183,14 @@ export class Masscan extends TypedEmitter<MasscanEvents> {
 
       this.scanner.stderr?.on('data', (chunkData: Buffer) => {
         // this is fine because stderr is flushed after every line
-        const chunks = chunkData.toString().split(/\r?\n/); // split just in case
+        const chunks = chunkData.toString()
+          .split(/\r?\n/).map(c => c.trim()); // split just in case
+
         for (const chunk of chunks) {
           const stats = this.parseStats(chunk);
           if (stats) {
             this.emit('stats', stats);
-          } else if (chunk && !MASSCAN_BANNER_REGEX.test(chunk)) {
+          } else if (chunk && !MASSCAN_BANNER_REGEX.test(chunk) && chunk.length > 0) {
             this.emit('error', new Error(chunk));
           }
         }
